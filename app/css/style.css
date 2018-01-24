@@ -1,0 +1,164 @@
+/* Custom Styles  */
+
+.sfondosinottico {
+    background-color: #f0f0f0 !important;
+}
+.tmpBorder
+{
+    /*
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;*/
+}
+
+.vimAreaLabel
+{
+    margin-top: 0.8rem;
+    margin-right: 30rem;
+    font-size: 2.5rem;
+}
+
+.borderPV11
+{
+    border-right: black solid 2px;
+    padding-bottom: 20px;
+}
+
+.borderPV12
+{
+    border-right: black solid 2px;
+    padding-top: 5px;
+}
+
+.borderPV21
+{
+    border-left: black solid 2px;
+    padding-bottom: 20px;
+}
+
+.borderPV22
+{
+    border-left: black solid 2px;
+    padding-top: 5px;
+}
+
+.corridorV1
+{
+    /*border-left: black solid 2px;
+    border-right: black solid 2px;*/
+}
+
+.corridorV2
+{
+    /*border-left: black solid 2px;
+    border-right: black solid 2px;*/
+}
+
+.corridorV21
+{
+    border-left: black solid 2px;
+}
+
+.corridorV23
+{
+    border-top: black solid 2px;
+    margin-top: -0.1rem;
+}
+
+.corridorH1
+{
+    border-top: black solid 2px;
+    border-bottom: black solid 2px;
+    padding-left: 62px;
+    padding-right: 62px;
+}
+
+.corridorH2
+{
+    border-top: black solid 2px;
+    border-bottom: black solid 2px;
+    padding-left: 92px;
+    padding-right: 92px;
+}
+
+
+/* second plant */
+.vimAreaLogo2
+{
+    text-align: center;
+}
+
+.vimAreaLabel2
+{
+    margin-top: 0.8rem;
+    font-size: 1.5rem;
+    text-align: right;
+    margin-left: 30%;
+}
+
+.hcorr1 {
+    border-top: 2px solid black;
+}
+
+
+.rightBuilding {
+    border: 2px solid black;
+    padding-top: 1px;
+}
+
+
+.centriamolo {
+    margin: auto;
+    width: 50%;
+
+}
+.leftBuilding {
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+}
+.sapMFlexItem {
+    width: 100%;
+
+}
+
+.ominoVertical
+{
+    margin-top: 64px;
+}
+
+
+.ominoHorizontalBegin
+{
+    margin-left: 125px;
+}
+
+.ominoHorizontalEnd
+{
+    margin-right: 125px;
+}
+
+.mainViewLogo
+{
+
+}
+
+.customButtonGreen {
+    width: 100%;
+    margin: 0px !important;
+}
+
+.customButtonGreen *{
+    color: #00B200 !important;   
+}
+
+.det2
+{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.customProgressBar
+{
+    text-align: center;
+    border: 1px solid gray;
+}

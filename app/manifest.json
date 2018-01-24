@@ -1,0 +1,119 @@
+{
+    "_version": "1.1.0",
+    "sap.app": {
+        "id": "plantvim",
+        "type": "application",
+        "i18n": "locales/locale.properties",
+        "title": "{{plantvim.title}}",
+        "description": "{{plantvim.description}}",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "offline": true
+    },
+    "sap.ui": {
+        "_version": "1.1.0",
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": false
+        },
+        "supportedThemes": [
+            "sap_bluecrystal"
+        ]
+    },
+    "sap.ui5": {
+        "_version": "1.1.0",
+        "resources": {
+            "css": [{
+                    "uri": "css/style.css",
+                    "id": "customstyle"
+                }, {
+                    "uri": "css/materialize.css",
+                    "id": "materialize"
+                },
+                {
+                    "uri": "vis-timeline-graph2d.min.css",
+                    "id": "timeline"
+                }
+            ]
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "locale": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "plantvim.locales.locale"
+                }
+            }
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.m": {
+                    "minVersion": "1.30.0"
+                },
+                "sap.ui.commons": {
+                    "minVersion": "1.30.0"
+                },
+                "sap.ui.layout": {
+                    "minVersion": "1.30.0"
+                }
+            }
+        },
+        "rootView": "plantvim.view.App",
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewPath": "plantvim",
+                "controlId": "rootControl",
+                "controlAggregation": "pages",
+                "viewType": "XML"
+            },
+            "routes": [{
+                    "name": "main",
+                    "pattern": "",
+                    "target": "main"
+                },
+                {
+                    "name": "plantS",
+                    "pattern": "plantS",
+                    "target": "plantS"
+                },
+                {
+                    "name": "plantSA1",
+                    "pattern": "plantSA1",
+                    "target": "plantSA1"
+                }],
+            "targets": {
+                "main": {
+                    "viewName": "view.Main",
+                    "viewLevel": 0
+                },
+                "plantS": {
+                    "viewName": "view.PlantS",
+                    "viewLevel": 1
+                },
+                "plantSA1": {
+                    "viewName": "view.PlantSA1",
+                    "viewLevel": 1
+                }
+            }
+        },
+        "config": {
+            "remoteDS": ""
+        }
+    }
+}

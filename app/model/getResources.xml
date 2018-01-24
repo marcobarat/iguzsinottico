@@ -1,0 +1,22 @@
+<Row>
+    [
+    {
+        "RESOURCE_BO" : "ResourceBO:0100,450T",
+        "RESOURCE" : "450T",
+        "STATUS_MES" : "PRODUCTIVE",
+        "STATUS_DESC" : "Produttivo",
+        "STATUS_TYPE" : "2",
+        "OPERATION" : "INI",
+        "YIELD" : "100"
+    }, {
+        "RESOURCE_BO" : "ResourceBO:0100,6138",
+        "RESOURCE" : "6138",
+        "STATUS_MES" : "PRODUCTIVE",
+        "STATUS_DESC" : "Produttivo",
+        "STATUS_TYPE" : "5",
+        "OPERATION" : "SILI",
+        "YIELD" : "0"
+        }
+    
+    ]
+</Row>

@@ -1,0 +1,140 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="plantvim.component"
+          controllerName="plantvim.controller.PlantSA1">
+    <Page title="{locale>plantvim.view.title}"
+          showHeader="false"
+          enableScrolling="false"
+          class="plant">
+        <content>
+
+            <VBox width="100%" height="100%">
+                <HBox height="10%" class="tmpBorder"
+                      alignItems="Start"
+                      justifyContent="End">
+                    <!--<Label text="VIMAR HEAD" />-->
+                    <Label text="REPARTO SA1" design="Bold" class="vimAreaLabel"/>
+                    <Image
+                        src="images/Marchio bianco-min.png"
+                        densityAware="false"
+                        width="12rem" >
+                    </Image>
+                </HBox>
+                <HBox height="90%" class="tmpBorder">
+                    <HBox width="34%" class="tmpBorder">
+
+                        <VBox class="tmpBorder" height="100%" width="100%">
+                            <HBox height="45%" width="100%" class="borderPV11" alignItems="End"
+                                  justifyContent="Start">
+                                <!--<Label text="PV11" />-->
+                                <comp:IlaPress imageUrl="{machines>/01900/img}" imageSize="80px" mnumber="{machines>/01900/RESOURCE}" marginLeft="76px" value="{machines>/01900/value}" gaugeVisible="{machines>/01900/gaugeVisible}" hasTool="{machines>/01900/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71098/img}" imageSize="80px" mnumber="{machines>/71098/RESOURCE}" marginLeft="8px" value="{machines>/71098/value}" gaugeVisible="{machines>/71098/gaugeVisible}" hasTool="{machines>/71098/hasTool}" press="clickDetail"/>
+                                <comp:IlaPressMix3 imageUrl="{machines>/01269/img}" imageUrl2="{machines>/71035/img}" imageUrl3="images/Assembl.png" imageSize="80px"  mnumber="{machines>/01269/RESOURCE}" mnumber2="{machines>/71035/RESOURCE}" mnumber3="71A10" press="clickDetail" hasTool="false" value="{machines>/01269/value}" gaugeVisible="{machines>/01269/gaugeVisible}"/>
+                            </HBox>
+                            <HBox height="10%" width="100%" class="corridorH1"
+                                  alignItems="Center"
+                                  justifyContent="SpaceBetween">
+                                <!--<Label text="corr" />
+                                <Image id="omino1"
+                                    src="images/omino-min.png"
+                                    densityAware="false"
+                                    width="3rem" >
+                                </Image>
+                                <Image id="omino2"
+                                    src="images/omino-min.png"
+                                    densityAware="false"
+                                    width="3rem" >
+                                </Image>-->
+                            </HBox>
+                            <HBox height="45%" width="100%" class="borderPV12">
+                                <!--<Label text="PV12" />-->
+                                <comp:IlaPress imageUrl="{machines>/01261/img}" imageSize="80px" mnumber="{machines>/01261/RESOURCE}" marginLeft="76px" value="{machines>/01261/value}" gaugeVisible="{machines>/01261/gaugeVisible}" hasTool="{machines>/01261/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71021/img}" imageSize="80px" mnumber="{machines>/71021/RESOURCE}" marginLeft="16px" value="{machines>/71021/value}" gaugeVisible="{machines>/71021/gaugeVisible}" hasTool="{machines>/71021/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71100/img}" imageSize="80px" mnumber="{machines>/71100/RESOURCE}" marginLeft="40px" value="{machines>/71100/value}" gaugeVisible="{machines>/71100/gaugeVisible}" hasTool="{machines>/71100/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/01115/img}" imageSize="80px" mnumber="{machines>/01115/RESOURCE}" marginLeft="16px" value="{machines>/01115/value}" gaugeVisible="{machines>/01115/gaugeVisible}" hasTool="{machines>/01115/hasTool}" press="clickDetail"/>
+                            </HBox>
+                        </VBox>
+
+                    </HBox>
+                    <HBox width="5%" class="corridorV1">
+
+                        <VBox class="tmpBorder" height="100%" width="100%">
+                            <HBox height="45%" width="100%" class="tmpBorder">
+                                <!--<Label text="corrvert11" />-->
+                            </HBox>
+                            <HBox height="10%" width="100%" class="tmpBorder">
+                                <!--<Label text="corrvert12" />-->
+                            </HBox>
+                            <HBox height="45%" width="100%" class="tmpBorder">
+                                <!--<Label text="corrvert13" />-->
+                            </HBox>
+                        </VBox>
+
+                    </HBox>
+                    <HBox width="53%" class="tmpBorder">
+
+                        <VBox class="tmpBorder" height="100%" width="100%">
+                            <HBox height="45%" width="100%" class="borderPV21"
+                                  alignItems="End"
+                                  justifyContent="Start">
+                                <!--<Label text="PV21" />-->
+                                <!--
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="images/Pressa_gialla_3d.png" imageSize="80px" mnumber="71A17" mnumber2="71096" marginLeft="16px" gaugeVisible="false" press="clickDetail"/>
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="images/Pressa_rossa_3d.png" imageSize="80px" mnumber="71A11" mnumber2="71097" marginLeft="16px" gaugeVisible="false" press="clickDetail"/>
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="images/Pressa_verde_3d.png" imageSize="80px" mnumber="71A14" mnumber2="71092" marginLeft="16px" press="clickDetail"/>
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="images/Pressa_verde_3d.png" imageSize="80px" mnumber="71A16" mnumber2="71099" marginLeft="16px" press="clickDetail"/>
+                                -->
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="{machines>/71096/img}" imageSize="80px" mnumber="71A17" mnumber2="{machines>/71096/RESOURCE}" marginLeft="16px" value="{machines>/71096/value}" gaugeVisible="{machines>/71096/gaugeVisible}" hasTool="{machines>/71096/hasTool}" press="clickDetail"/>
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="{machines>/71097/img}" imageSize="80px" mnumber="71A11" mnumber2="{machines>/71097/RESOURCE}" marginLeft="16px" value="{machines>/71097/value}" gaugeVisible="{machines>/71097/gaugeVisible}" hasTool="{machines>/71097/hasTool}" press="clickDetail"/>
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="{machines>/71092/img}" imageSize="80px" mnumber="71A14" mnumber2="{machines>/71092/RESOURCE}" marginLeft="16px" value="{machines>/71092/value}" gaugeVisible="{machines>/71092/gaugeVisible}" hasTool="{machines>/71092/hasTool}" press="clickDetail"/>
+                                <comp:IlaPressMix imageUrl="images/Assembl.png" imageUrl2="{machines>/71099/img}" imageSize="80px" mnumber="71A16" mnumber2="{machines>/71099/RESOURCE}" marginLeft="16px" value="{machines>/71099/value}" gaugeVisible="{machines>/71099/gaugeVisible}" hasTool="{machines>/71099/hasTool}" press="clickDetail"/>
+                            </HBox>
+                            <HBox height="10%" width="100%" class="corridorH2"
+                                  alignItems="Center"
+                                  justifyContent="SpaceBetween">
+                                <!--<Label text="corrh2" />
+                                <Image id="omino3"
+                                    src="images/omino-min.png"
+                                    densityAware="false"
+                                    width="3rem" >
+                                </Image>
+                                <Image id="omino4"
+                                    src="images/omino-min.png"
+                                    densityAware="false"
+                                    width="3rem" >
+                                </Image>-->
+                            </HBox>
+                            <HBox height="45%" width="100%" class="borderPV22">
+                                <!--<Label text="PV22" />-->
+                                <comp:IlaPress imageUrl="{machines>/71056/img}" imageSize="80px" mnumber="{machines>/71056/RESOURCE}" marginLeft="16px" value="{machines>/71056/value}" gaugeVisible="{machines>/71056/gaugeVisible}" hasTool="{machines>/71056/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/01260/img}" imageSize="80px" mnumber="{machines>/01260/RESOURCE}" marginLeft="16px" value="{machines>/01260/value}" gaugeVisible="{machines>/01260/gaugeVisible}" hasTool="{machines>/01260/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71106/img}" imageSize="80px" mnumber="{machines>/71106/RESOURCE}" marginLeft="16px" value="{machines>/71106/value}" gaugeVisible="{machines>/71106/gaugeVisible}" hasTool="{machines>/71106/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71105/img}" imageSize="80px" mnumber="{machines>/71105/RESOURCE}" marginLeft="16px" value="{machines>/71105/value}" gaugeVisible="{machines>/71105/gaugeVisible}" hasTool="{machines>/71105/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71104/img}" imageSize="80px" mnumber="{machines>/71104/RESOURCE}" marginLeft="16px" value="{machines>/71104/value}" gaugeVisible="{machines>/71104/gaugeVisible}" hasTool="{machines>/71104/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71103/img}" imageSize="80px" mnumber="{machines>/71103/RESOURCE}" marginLeft="16px" value="{machines>/71103/value}" gaugeVisible="{machines>/71103/gaugeVisible}" hasTool="{machines>/71103/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71102/img}" imageSize="80px" mnumber="{machines>/71102/RESOURCE}" marginLeft="16px" value="{machines>/71102/value}" gaugeVisible="{machines>/71102/gaugeVisible}" hasTool="{machines>/71102/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/71101/img}" imageSize="80px" mnumber="{machines>/71101/RESOURCE}" marginLeft="16px" value="{machines>/71101/value}" gaugeVisible="{machines>/71101/gaugeVisible}" hasTool="{machines>/71101/hasTool}" press="clickDetail"/>
+                            </HBox>
+                        </VBox>
+
+                    </HBox>
+                    <VBox width="2%" class="corridorV2">
+                        <HBox height="45%" class="corridorV21"></HBox>
+                        <HBox height="10%" class="corridorV22"></HBox>
+                        <HBox height="45%" class="corridorV23"></HBox>
+                    </VBox>
+                    <VBox width="6%" height="100%" class="tmpBorder">
+                        <!--<Label text="offices" />-->
+                        <html:div style="width: 80px; height: 250px; border: 2px solid black; margin-top: 70px;">
+                            <html:div style="-webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); font-size: 2rem; width: 100%; margin-top: 100px;"></html:div>
+                        </html:div>
+                        <html:div style="width: 80px; height: 350px; border: 2px solid black;">
+                            <html:div style="-webkit-transform: rotate(90deg); -ms-transform: rotate(90deg); font-size: 1.5rem; width: 100%; margin-top: 50px; white-space: nowrap"></html:div>
+                        </html:div>
+                    </VBox>
+                </HBox>
+            </VBox>
+
+        </content>
+    </Page>
+</mvc:View>

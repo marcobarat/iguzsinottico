@@ -1,0 +1,163 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:comp="plantvim.component"
+    xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="detailDialog" title="CdL: {/detail/cdlName} / Pressa: {/detail/resName}" class="myDialog" stretch="true"
+            contentWidth="100%" resizable="false" contentHeight="100%">
+        <content>
+            <VBox width="100%">
+                <HBox alignItems="Start"
+                      justifyContent="Center">
+                    <Image
+                        src="{/detail/img}"
+                        densityAware="false"
+                        width="200px" >
+                    </Image>
+                </HBox>
+                <HBox width="100%">
+                    <f:SimpleForm   id="detailForm"
+                                    maxContainerCols="2"
+                                    editable="false"
+                                    labelSpanL="2"
+                                    labelSpanM="2"
+                                    emptySpanL="0"
+                                    emptySpanM="0"
+                                    columnsL="2"
+                                    columnsM="2">
+                        <f:content>
+                            <core:Title text="Stato" />
+                            <Label text="Stato macchina" />
+                            <Text text="{/detail/MES_STATUS}" />
+                            <Label text="Fase produttiva" />
+                            <Text text="{/detail/CURRENT_OPERATION}" />
+                            <Label text="Tempo totale di fermata" />
+                            <Text text="{/detail/TIME_TOTAL_STOP}" />
+
+                            <core:Title text="Dettaglio ordine" />
+                            <Label text="Ordine di produzione" />
+                            <Text text="{/detail/SHOP_ORDER}" />
+                            <Label text="Quantita' totale" />
+                            <Text text="{/detail/QTY_TO_BUILD}" />
+                            <Label text="Quantita' prodotta" />
+                            <Text text="{/detail/QTY_DONE}" /> <comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_DONE_PERC} -->
+                            <Label text="Quantita' da produrre" />
+                            <Text text="{/detail/QTY_PRODUCE}" /> <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_PRODUCE_PERC} -->
+                            <Label text="Tempo ciclo [s]" />
+                            <Text text="{/detail/TIME_CYCLE}" />
+                            <Label text="Tempo previsto al termine" />
+                            <Text text="{/detail/TIME_TO_END}" />
+
+                        </f:content>
+                    </f:SimpleForm>
+                </HBox>
+                <HBox width="100%">
+                    <HBox  width="50%" class="det2">
+                        <f:SimpleForm   id="detailForm2"
+                                        layout="ResponsiveGridLayout"
+                                        maxContainerCols="1"
+                                        editable="false"
+                                        labelSpanL="2"
+                                        labelSpanM="2"
+                                        emptySpanL="0"
+                                        emptySpanM="0"
+                                        columnsL="1"
+                                        columnsM="1">
+                            <f:content>
+
+                                <core:Title text="Materiale" />
+                                <Label text="Codice materiale" />
+                                <Text text="{/detail/ITEM}" />
+                                <Label text="Descrizione materiale" />
+                                <Text text="{/detail/ITEM_DESCRIPTION}" />
+                                <Label text="Magazzino di destinazione" />
+                                <Text text="{/detail/STORE}" />
+
+                                <!--
+                                <core:Title text="Attrezzatura" />
+                                <Label text="Codice stampo" />
+                                <Text text="efwefdzfsfsdf" />
+                                <Label text="Descrizione stampo" />
+                                <Text text="wefwerf34t45646" />-->
+                            </f:content>
+                        </f:SimpleForm>
+                    </HBox>
+                    <HBox  width="50%">
+                        <Table
+                            inset="false"
+                            items="{/facilities}">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title text="Attrezzature" level="H2"/>
+                                </Toolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column>
+                                    <Text text="Codice stampo" />
+                                </Column>
+                                <Column>
+                                    <Text text="Descrizione stampo" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <Text
+                                            text="{TOOL_NUMBER}" />
+                                        <Text
+                                            text="{TOOL_DESCRIPTION}" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </HBox>
+                </HBox>
+                <HBox>
+                    <Table
+                        inset="false"
+                        items="{/bom}">
+                        <headerToolbar>
+                            <Toolbar>
+                                <Title text="BOM" level="H2"/>
+                            </Toolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column>
+                                <Text text="Codice componente" />
+                            </Column>
+                            <Column>
+                                <Text text="Descrizione componente" />
+                            </Column>
+                            <Column>
+                                <Text text="Quantita'" />
+                            </Column>
+                            <Column>
+                                <Text text="UM" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text
+                                        text="{ITEM}" />
+                                    <Text
+                                        text="{DESCRIPTION}" />
+                                    <Text
+                                        text="{QTY}" />
+                                    <Text
+                                        text="{UM}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </HBox>
+            </VBox>
+        </content>
+        <endButton>
+            <Button icon="sap-icon://accept" press="onClose" class="customButtonGreen"/>
+        </endButton>
+    </Dialog>
+
+</core:FragmentDefinition>

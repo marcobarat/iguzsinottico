@@ -1,0 +1,55 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="plantvim.component"
+          controllerName="plantvim.controller.PlantS">
+    <Page title="{locale>plantvim.view.title}"
+          showHeader="false"
+          enableScrolling="false"
+          class="plant sfondosinottico">
+        <content>
+
+            <VBox width="100%" height="100%">
+                <VBox height="25%" class="">
+                    <HBox width="100%" height="100%">
+
+                        <HBox width="100%" height="100%">
+                            <VBox width="100%" class="vimAreaLogo2" >
+                                <Image
+                                    src="images/iguzlogo.png"
+                                    densityAware="false"
+                                    width="12rem" >
+                                </Image>
+                                <!-- <Label text="MACHINE" design="Bold" class="vimAreaLabel2"/> -->
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </VBox>
+                
+                
+                
+                
+                
+                
+                <HBox height="100%" class="">
+
+               
+
+                    <VBox height="100%" width="70%" class="centriamolo">
+                        <!--<Text text="altre file"/>-->
+                        <VBox height="auto"  class="rightBuilding">
+   
+                            <HBox width="100%">
+                                <comp:IlaPress imageUrl="{machines>/Engel450T/img}" imageSize="400px" marginLeft="0px" mnumber="{machines>/Engel450T/RESOURCE}" value="{machines>/Engel450T/value}" gaugeVisible="{machines>/Engel450T/gaugeVisible}" hasTool="{machines>/Engel450T/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/6138/img}" imageSize="400px" marginLeft="100px" mnumber="{machines>/6138/RESOURCE}" value="{machines>/6138/value}" gaugeVisible="{machines>/6138/gaugeVisible}" hasTool="{machines>/6138/hasTool}" press="clickDetail"/>
+                                
+                            </HBox>
+                        </VBox>
+
+
+                    </VBox>
+                </HBox>
+            </VBox>
+
+        </content>
+    </Page>
+</mvc:View>
