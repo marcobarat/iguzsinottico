@@ -8,11 +8,16 @@ sap.ui.define([
     "use strict";
 
     var DetailDialog = GenericDialog.extend("plantvim.controller.DetailDialog", {
-        model: new JSONModel({detail: null, bom: [], facilities: []}),
+        model: new JSONModel({detail: null, bom: [], facilities: [], mat: []}),
         shopOrder: null,
+        machineselected: null,
+        workcenterid: null,
+        type: null,
         par: {},
         open: function (oView, arg) {
-
+            this.machineselected = sap.ui.getCore().getModel().getData().machineselected.machine;
+            this.workcenterid = sap.ui.getCore().getModel().getData().machineselected.workcenterid;
+            this.type = sap.ui.getCore().getModel().getData().machineselected.type;
             var avoidCall = false;
             if ("images/Pressa_rossa_m_3d.png" === arg.img) {
                 avoidCall = true;
@@ -29,7 +34,7 @@ sap.ui.define([
             this.model.setProperty("/detail", {});
             this.model.setProperty("/bom", []);
             this.model.setProperty("/facilities", []);
-
+            this.model.setProperty("/mat", []);
             this.par.resource = arg.res;
             this.par.img = arg.img;
 
@@ -48,7 +53,7 @@ sap.ui.define([
 
             if (avoidCall === false) {
                 this.getDetailResource(this.par.resource);
-         //       this.getDetailFacility(this.par.resource);
+                //       this.getDetailFacility(this.par.resource);
             }
 
         },
@@ -60,98 +65,168 @@ sap.ui.define([
         showErrorMessageBox: function (msg) {
             MessageBox.error(msg);
         },
+
         getDetailResource: function (resource) {
-
-            var site = window.site;
-
+            var oModel = new JSONModel();
+            var transactionName;
+            var transactionCall;
             var that = this;
+            var site = "iGuzzini";
+            if (this.type === 'E') {
+                transactionName = "XAC_GetEngelMachineStatus";
+                transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
-            if (jQuery.sap.getUriParameters().get("localMode") === "true") {
-                jQuery.ajax({
-                    dataType: "xml",
-                    url: "model/getDetail.xml",
-                    success: function (data, response) {
-                        that.getDetailResourceSuccess(data, response);
-                    },
-                    async: true
-                });
-                return;
+            } else {
+                transactionName = "XAC_GetSiliconatriceMachineStatus";
+                transactionCall = site + "/XACQuery" + "/siliconatrice/" + transactionName;
+
             }
 
-            var transactionName = "GET_DETAILS_BY_RESOURCE";
-
-            var transactionCall = site + "/" + "TRANSACTION" + "/" + transactionName;
-
-            var params = {
-                "TRANSACTION": transactionCall,
-                "SITE": site,
-                "RESOURCE": resource,
-                "DEPARTMENT": "SA1",
-                "OutputParameter": "JSON"
-            };
-
-            try {
-                var req = jQuery.ajax({
-                    url: "/XMII/Runner",
-                    data: params,
-                    method: "POST",
-                    dataType: "xml",
-                    async: true
-                });
-                req.done(jQuery.proxy(that.getDetailResourceSuccess, that));
-                req.fail(jQuery.proxy(that.getDetailResourceError, that));
-            } catch (err) {
-                jQuery.sap.log.debug(err.stack);
-            }
+            var input = "&workcenterid=" + this.workcenterid;// + this.workcenterid;
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    if (that.type === 'E') {
+                        oModel.setProperty("/", {
+                            "para": JSON.parse(oData.Rowsets.Rowset[0].Row[0].Parameters_json),
+                            "workcenter": oData.Rowsets.Rowset[0].Row[0].Workcenter,
+                            "status": oData.Rowsets.Rowset[0].Row[0].SDescription
+                        });
+                    }
+                    that.getDetailResourceSuccess(oData);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
         },
-        getDetailResourceSuccess: function (data, response) {
+        getDetailResourceSuccess: function (data) {
             sap.ui.core.BusyIndicator.hide();
 
-            var jsonObjStr = jQuery(data).find("Row").text();
-            var jsonObj = JSON.parse(jsonObjStr);
+            var jsonObjStr;
+            var jsonObj;
 
-            var obj = jsonObj[0];
+            if (this.type === 'E') {
+                jsonObjStr = JSON.parse(data.Rowsets.Rowset[0].Row[0].Parameters_json);
+                jsonObj = jsonObjStr.parameters;
+            } else {
+                jsonObjStr = (data.Rowsets.Rowset[0].Row);
+                jsonObj = jsonObjStr;
+            }
+            var obj = jsonObj;
+
             if (obj) {
-                this.shopOrder = obj.SHOP_ORDER;
-                obj.cdlName = obj.CDL;
+                if (this.type === 'E') {
+                    this.shopOrder = obj[23].VAL;
+                    obj.cdlName = obj[23].VAL;
+                    try {
+                        //obj.TIME_TO_END = this.secondsToHms(obj[16].VAL);
+                        obj.TIME_TO_END = (obj[16].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
 
-                try {
-                    obj.TIME_TO_END = this.secondsToHms(obj.TIME_TO_END);
-                } catch (err) {
-                    jQuery.sap.log.error(err);
+                    try {
+                        //obj.TIME_TOTAL_STOP = this.secondsToHms(obj[25].VAL);
+                        obj.TIME_TOTAL_STOP = (obj[22].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+                    try {
+                        //obj.TIME_TOTAL_STOP = this.secondsToHms(obj[25].VAL);
+                        obj.TIME_CYCLE = (obj[30].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+                    try {
+                        //obj.TIME_TOTAL_STOP = this.secondsToHms(obj[25].VAL);
+                        obj.TIME_LAST_CYCLE = (obj[12].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+
+                    try {
+                        //obj.QTY_TO_BUILD = obj.QTY_TO_BUILD.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        obj.QTY_DONE = obj[8].VAL;
+                        obj.QTY_PRODUCE = 0;
+                        obj.QTY_REJECTED = obj[9].VAL;
+                        //obj.QTY_PRODUCE = obj[8].VAL.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+                } else {
+                    this.shopOrder = obj[0].num_commessa;
+                    obj.cdlName = obj[0].num_commessa;
+
+                    try {
+                        //obj.TIME_TO_END = this.secondsToHms(obj[16].VAL);
+                        obj.TIME_TO_END = (obj[16].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+                    try {
+                        //obj.TIME_TOTAL_STOP = this.secondsToHms(obj[25].VAL);
+                        obj.TIME_TOTAL_STOP = (obj[22].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+                    try {
+                        //obj.TIME_TOTAL_STOP = this.secondsToHms(obj[25].VAL);
+                        obj.TIME_CYCLE = (obj[30].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+                    try {
+                        //obj.TIME_TOTAL_STOP = this.secondsToHms(obj[25].VAL);
+                        obj.TIME_LAST_CYCLE = (obj[12].VAL);
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
+
+
+                    try {
+                        //obj.QTY_TO_BUILD = obj.QTY_TO_BUILD.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        obj.QTY_DONE = obj[8].VAL;
+                        obj.QTY_PRODUCE = 0;
+                        obj.QTY_REJECTED = obj[9].VAL;
+                        //obj.QTY_PRODUCE = obj[8].VAL.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    } catch (err) {
+                        jQuery.sap.log.error(err);
+                    }
                 }
 
-                try {
-                    obj.TIME_TOTAL_STOP = this.secondsToHms(obj.TIME_TOTAL_STOP);
-                } catch (err) {
-                    jQuery.sap.log.error(err);
-                }
 
-                try {
-                    obj.QTY_TO_BUILD = obj.QTY_TO_BUILD.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                    obj.QTY_DONE = obj.QTY_DONE.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                    obj.QTY_PRODUCE = obj.QTY_PRODUCE.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-                } catch (err) {
-                    jQuery.sap.log.error(err);
-                }
 
-                if ("PRODUCTIVE" === obj.MES_STATUS) {
-                    obj.MES_STATUS = "PRODUTTIVO";
+                if ("Warning" === sap.ui.getCore().getModel().getData().machine[this.machineselected].STATUS_MES) {
+                    obj.MES_STATUS = "Productive";
                 }
-                if ("ENABLED" === obj.MES_STATUS) {
-                    obj.MES_STATUS = "ABILITATO";
+                if ("Success" === sap.ui.getCore().getModel().getData().machine[this.machineselected].STATUS_MES) {
+                    obj.MES_STATUS = "Ready";
                 }
-                if ("UNKNOWN" === obj.MES_STATUS) {
-                    obj.MES_STATUS = "SCONOSCIUTO";
+                if ("Error" === sap.ui.getCore().getModel().getData().machine[this.machineselected].STATUS_MES) {
+                    obj.MES_STATUS = "Error";
                 }
 
                 obj.resName = this.par.resource;
                 obj.img = this.par.img;
+                var oModel = new JSONModel();
 
                 this.model.setProperty("/detail", obj);
-                this.getDetailFacility(this.shopOrder);	
+                this.getDetailFacility(this.shopOrder);
                 this.getDetailBOM(this.shopOrder);
+                this.getDetailMAT(this.shopOrder);
             }
+
+
 
         },
         getDetailResourceError: function (error) {
@@ -160,116 +235,100 @@ sap.ui.define([
         },
         getDetailBOM: function (shopOrder) {
 
-            var site = window.site;
-
+            var oModel = new JSONModel();
+            var transactionName = "XAC_GetCurrentBOMComponentForEngel";
             var that = this;
+            var site = "iGuzzini";
+            var input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
+            var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
-            if (jQuery.sap.getUriParameters().get("localMode") === "true") {
-                jQuery.ajax({
-                    dataType: "xml",
-                    url: "model/getBOM.xml",
-                    success: function (data, response) {
-                        that.getDetailBOMSuccess(data, response);
-                    },
-                    async: true
-                });
-                return;
-            }
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    that.getDetailBOMSuccess(oData.Rowsets.Rowset[0].Row);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
 
-            var transactionName = "GET_BOM_BY_SO";
-
-            var transactionCall = site + "/" + "TRANSACTION" + "/" + transactionName;
-
-            var params = {
-                "TRANSACTION": transactionCall,
-                "SITE": site,
-                "DEPARTMENT": "SA1",
-                "SHOP_ORDER": shopOrder,
-                "OutputParameter": "JSON"
-            };
-
-            try {
-                var req = jQuery.ajax({
-                    url: "/XMII/Runner",
-                    data: params,
-                    method: "POST",
-                    dataType: "xml",
-                    async: true
-                });
-                req.done(jQuery.proxy(that.getDetailBOMSuccess, that));
-                req.fail(jQuery.proxy(that.getDetailBOMError, that));
-            } catch (err) {
-                jQuery.sap.log.debug(err.stack);
-            }
         },
         getDetailBOMSuccess: function (data, response) {
             sap.ui.core.BusyIndicator.hide();
 
-            var jsonObjStr = jQuery(data).find("Row").text();
-            var jsonObj = eval(jsonObjStr); // jshint ignore:line
+            //var jsonObjStr = jQuery(data).find("Row").text();
+            //var jsonObj = eval(jsonObjStr); // jshint ignore:line
 
-            this.model.setProperty("/bom", jsonObj);
+            this.model.setProperty("/bom", data);
 
         },
+
+        getDetailMAT: function (shopOrder) {
+
+            var oModel = new JSONModel();
+            var transactionName = "XAC_GetCurrentShoporderMaterialFromEngel";
+            var that = this;
+            var site = "iGuzzini";
+            var input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
+            var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
+
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    that.getDetailMATSuccess(oData.Rowsets.Rowset[0].Row);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
+
+        },
+        getDetailMATSuccess: function (data, response) {
+            sap.ui.core.BusyIndicator.hide();
+
+            //var jsonObjStr = jQuery(data).find("Row").text();
+            //var jsonObj = eval(jsonObjStr); // jshint ignore:line
+
+            this.model.setProperty("/mat", data);
+
+        },
+
         getDetailBOMError: function (error) {
             sap.ui.core.BusyIndicator.hide();
             MessageBox.error(error);
         },
-     //   getDetailFacility: function (resource) {
+        //   getDetailFacility: function (resource) {
         getDetailFacility: function (shopOrder) {
 
-            var site = window.site;
-
+            var oModel = new JSONModel();
+            var transactionName = "XAC_GetCurrentStampoForEngel";
             var that = this;
+            var site = "iGuzzini";
+            var input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
+            var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
-            if (jQuery.sap.getUriParameters().get("localMode") === "true") {
-                jQuery.ajax({
-                    dataType: "xml",
-                    url: "model/getFacility.xml",
-                    success: function (data, response) {
-                        that.getDetailFacilitySuccess(data, response);
-                    },
-                    async: true
-                });
-                return;
-            }
+            jQuery.ajax({
+                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                method: "GET",
+                async: false,
+                success: function (oData) {
+                    that.getDetailFacilitySuccess(oData.Rowsets.Rowset[0].Row);
+                },
+                error: function (oData) {
+                    that.error(oData);
+                }
+            });
 
-          //  var transactionName = "GET_TOOL_BY_RESOURCE";
-	
-	var transactionName = "GET_TOOL_BY_ORDER";
-
-            var transactionCall = site + "/" + "TRANSACTION" + "/" + transactionName;
-
-            var params = {
-                "TRANSACTION": transactionCall,
-                "SITE": site,
-          //      "RESOURCE": resource,
-                 "DEPARTMENT": "SA1",
-                "SHOP_ORDER": shopOrder,	
-                "OutputParameter": "JSON"
-            };
-
-            try {
-                var req = jQuery.ajax({
-                    url: "/XMII/Runner",
-                    data: params,
-                    method: "POST",
-                    dataType: "xml",
-                    async: true
-                });
-                req.done(jQuery.proxy(that.getDetailFacilitySuccess, that));
-                req.fail(jQuery.proxy(that.getDetailFacilityError, that));
-            } catch (err) {
-                jQuery.sap.log.debug(err.stack);
-            }
         },
         getDetailFacilitySuccess: function (data, response) {
             sap.ui.core.BusyIndicator.hide();
 
-            var jsonObjStr = jQuery(data).find("Row").text();
-            var jsonObj = JSON.parse(jsonObjStr);
 
-            this.model.setProperty("/facilities", jsonObj);
+            this.model.setProperty("/facilities", data);
 
 
         },

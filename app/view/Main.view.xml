@@ -15,7 +15,7 @@
                     <HBox width="15%" alignItems="Center"
                           justifyContent="End">
                         <Image
-                            src="images/Marchio bianco-min.png"
+                            src="images/iguzlogo.png"
                             densityAware="false"
                             width="12rem" class="mainViewLogo">
                         </Image>
@@ -29,10 +29,10 @@
                           justifyContent="SpaceBetween">
                         <comp:PodButton width="180px" press="plantS"
                                         iconImg="images/ico1.png" iconSize="10rem" imgAreaSize="6rem"
-                                        text="Reparto &quot;S&quot;"/>
-                        <comp:PodButton width="180px" press="plantSA1" imgAreaSize="6rem"
+                                        text="Injection Machines"/>
+                        <!-- <comp:PodButton width="180px" press="plantSA1" imgAreaSize="6rem"
                                         iconImg="images/ico2.png" iconSize="10rem"
-                                        text="Reparto &quot;SA1&quot;"/>
+                                        text="Reparto &quot;SA1&quot;"/> -->
                     </HBox>
                     <HBox width="30%" height="100%">
 

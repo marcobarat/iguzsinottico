@@ -5,7 +5,7 @@
     xmlns:comp="plantvim.component"
     xmlns:f="sap.ui.layout.form">
 
-    <Dialog id="detailDialog" title="CdL: {/detail/cdlName} / Pressa: {/detail/resName}" class="myDialog" stretch="true"
+    <Dialog id="detailDialog" title="Pressa: {/detail/resName}" class="myDialog" stretch="true"
             contentWidth="100%" resizable="false" contentHeight="100%">
         <content>
             <VBox width="100%">
@@ -32,23 +32,27 @@
                             <Label text="Stato macchina" />
                             <Text text="{/detail/MES_STATUS}" />
                             <Label text="Fase produttiva" />
-                            <Text text="{/detail/CURRENT_OPERATION}" />
-                            <Label text="Tempo totale di fermata" />
+                            <Text text="{/mat/0/CURRENT_OPERATION}" />
+                            <Label text="Tempo totale di pausa" />
                             <Text text="{/detail/TIME_TOTAL_STOP}" />
 
                             <core:Title text="Dettaglio ordine" />
                             <Label text="Ordine di produzione" />
-                            <Text text="{/detail/SHOP_ORDER}" />
+                            <Text text="{/detail/cdlName}" />
                             <Label text="Quantita' totale" />
                             <Text text="{/detail/QTY_TO_BUILD}" />
                             <Label text="Quantita' prodotta" />
-                            <Text text="{/detail/QTY_DONE}" /> <comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_DONE_PERC} -->
+                            <Text text="{/detail/QTY_DONE}" /> 
+                            <comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/> <!--{/detail/QTY_DONE_PERC} -->
+                            <Label text="Scarto macchina" />
+                            <Text text="{/detail/QTY_REJECTED}" />
                             <Label text="Quantita' da produrre" />
                             <Text text="{/detail/QTY_PRODUCE}" /> <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_PRODUCE_PERC} -->
                             <Label text="Tempo ciclo [s]" />
                             <Text text="{/detail/TIME_CYCLE}" />
-                            <Label text="Tempo previsto al termine" />
+                            <Label text="Tempo ultimo ciclo [s]" />
                             <Text text="{/detail/TIME_TO_END}" />
+                            
 
                         </f:content>
                     </f:SimpleForm>
@@ -69,11 +73,11 @@
 
                                 <core:Title text="Materiale" />
                                 <Label text="Codice materiale" />
-                                <Text text="{/detail/ITEM}" />
+                                <Text text="{/mat/0/Material}" />
                                 <Label text="Descrizione materiale" />
-                                <Text text="{/detail/ITEM_DESCRIPTION}" />
-                                <Label text="Magazzino di destinazione" />
-                                <Text text="{/detail/STORE}" />
+                                <Text text="{/mat/0/Description}" />
+                                <!-- <Label text="Magazzino di destinazione" />
+                                <Text text="{/detail/STORE}" /> -->
 
                                 <!--
                                 <core:Title text="Attrezzatura" />
@@ -105,9 +109,9 @@
                                 <ColumnListItem>
                                     <cells>
                                         <Text
-                                            text="{TOOL_NUMBER}" />
+                                            text="{Resource}" />
                                         <Text
-                                            text="{TOOL_DESCRIPTION}" />
+                                            text="{Description}" />
                                     </cells>
                                 </ColumnListItem>
                             </items>
@@ -141,13 +145,13 @@
                             <ColumnListItem>
                                 <cells>
                                     <Text
-                                        text="{ITEM}" />
+                                        text="{Material}" />
                                     <Text
-                                        text="{DESCRIPTION}" />
+                                        text="{Description}" />
                                     <Text
-                                        text="{QTY}" />
+                                        text="{Qty}" />
                                     <Text
-                                        text="{UM}" />
+                                        text="{UnitOfMeasure}" />
                                 </cells>
                             </ColumnListItem>
                         </items>

@@ -66,7 +66,7 @@ sap.ui.define([
             }
 
             this.getResources();
-            this.callTimer = setInterval(jQuery.proxy(this.getResources, this), 5000);
+            this.callTimer = setInterval(jQuery.proxy(this.getResources, this), 15000);
 
         },
         startOminoAnim: function () {
@@ -82,16 +82,16 @@ sap.ui.define([
 
 
             /*if (jQuery.sap.getUriParameters().get("localMode") === "true") {
-                jQuery.ajax({
-                    dataType: "xml",
-                    url: "model/getResources.xml",
-                    success: function (data, response) {
-                        that.getResourcesSuccess(data, response);
-                    },
-                    async: true
-                });
-                return;
-            }*/
+             jQuery.ajax({
+             dataType: "xml",
+             url: "model/getResources.xml",
+             success: function (data, response) {
+             that.getResourcesSuccess(data, response);
+             },
+             async: true
+             });
+             return;
+             }*/
 
 
 
@@ -116,13 +116,13 @@ sap.ui.define([
                 }
             });
 
-       
-            
+
+
 
 
 
         },
-      
+
         onAfterRendering: function () {
 
             //this.search();
@@ -208,6 +208,7 @@ sap.ui.define([
             }
             this.machines.setProperty("/", machinesMap);
 
+
         },
         getResourcesError: function (error) {
             sap.ui.core.BusyIndicator.hide();
@@ -227,6 +228,18 @@ sap.ui.define([
             var res1 = event.getParameter("resource");
             var img1 = event.getParameter("img");
             var type1 = event.getParameter("type");
+
+            var modelz = new JSONModel();
+            
+            modelz.setProperty("/machine", this.machines.getData());
+            modelz.setProperty("/machineselected",
+                    {
+                        machine: res1,
+                        workcenterid: this.machines.getData()[res1].WORKCENTER_ID,
+                        type: this.machines.getData()[res1].TYPE
+                    });
+                    
+            sap.ui.getCore().setModel(modelz);
             this.detailDialog.open(this.getView(), {res: res1, img: img1, type: type1});
         }
 
