@@ -1,4 +1,3 @@
-# Location Edit Lamborghini App UI5 #
 
 How to compile:
 
