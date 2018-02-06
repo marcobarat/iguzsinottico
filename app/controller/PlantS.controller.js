@@ -236,7 +236,8 @@ sap.ui.define([
                     {
                         machine: res1,
                         workcenterid: this.machines.getData()[res1].WORKCENTER_ID,
-                        type: this.machines.getData()[res1].TYPE
+                        type: this.machines.getData()[res1].TYPE,
+                        qtytobuild: this.machines.getData()[res1].QTYTOBUILD
                     });
                     
             sap.ui.getCore().setModel(modelz);

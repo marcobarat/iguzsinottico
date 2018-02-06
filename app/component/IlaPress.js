@@ -52,7 +52,14 @@ sap.ui.define([
                 },
                 "value": {
                     type: "string", defaultValue: 0
+                },
+                "qtyprd": {
+                    type: "string", defaultValue: 0
+                },
+                "qtyproduced": {
+                    type: "string", defaultValue: 0
                 }
+                
             },
             events: {
                 press: {enablePreventDefault: true}
@@ -140,10 +147,48 @@ sap.ui.define([
                 oRm.addStyle("white-space", "nowrap");
 
                 oRm.writeStyles();
-                oRm.write(">");
+                oRm.write(">Machine: ");
                 oRm.write(oControl.getMnumber());
                 oRm.write("</div>");
             }
+
+            if (oControl.getQtyprd() && null !== oControl.getQtyprd()) {
+                oRm.write("<div");
+                if (oControl.getFontWeight() && oControl.getFontWeight() !== null) {
+                    oRm.addStyle("font-weight", oControl.getFontWeight());
+                }
+                if (oControl.getFontSize() && oControl.getFontSize() !== null) {
+                    oRm.addStyle("font-size", oControl.getFontSize());
+                }
+                oRm.addStyle("overflow", "hidden");
+                oRm.addStyle("white-space", "nowrap");
+                oRm.addStyle("font-weight", "bold");
+
+                oRm.writeStyles();
+                oRm.write("> Qty to build: ");
+                oRm.write(oControl.getQtyprd());
+                oRm.write("</div>");
+
+            }
+            if (oControl.getQtyproduced() && null !== oControl.getQtyproduced()) {
+                oRm.write("<div");
+                if (oControl.getFontWeight() && oControl.getFontWeight() !== null) {
+                    oRm.addStyle("font-weight", oControl.getFontWeight());
+                }
+                if (oControl.getFontSize() && oControl.getFontSize() !== null) {
+                    oRm.addStyle("font-size", oControl.getFontSize());
+                }
+                oRm.addStyle("overflow", "hidden");
+                oRm.addStyle("white-space", "nowrap");
+                oRm.addStyle("font-weight", "bold");
+
+                oRm.writeStyles();
+                oRm.write(">Qty produced till now: ");
+                oRm.write(oControl.getQtyproduced());
+                oRm.write("</div>");
+
+            }      
+            
 
             oRm.write("</div>");
         },
@@ -158,15 +203,21 @@ sap.ui.define([
             if (this.getGaugeVisible() === true) {
 
                 var val = 0;
+                var qtytb = 0;
                 try {
                     val = Number(this.getValue());
                 } catch (err) {
                     jQuery.sap.log.error(err);
                 }
-
+                try {
+                    qtytb = Number(this.getQtyprd());
+                } catch (err) {
+                    jQuery.sap.log.error(err);
+                }
                 var g = new JustGage({
                     id: "gauge" + this.getId(),
                     value: val,
+                    qtyprd: qtytb,
                     min: 0,
                     max: 100,
                     levelColors: ["#af0000", "#ffe100", "#008000"],

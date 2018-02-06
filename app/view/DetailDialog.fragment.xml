@@ -31,7 +31,7 @@
                             <core:Title text="Stato" />
                             <Label text="Stato macchina" />
                             <Text text="{/detail/MES_STATUS}" />
-                            <Label text="Fase produttiva" />
+                            <Label text="Operazione macchina" />
                             <Text text="{/mat/0/CURRENT_OPERATION}" />
                             <Label text="Tempo totale di pausa" />
                             <Text text="{/detail/TIME_TOTAL_STOP}" />
@@ -39,15 +39,14 @@
                             <core:Title text="Dettaglio ordine" />
                             <Label text="Ordine di produzione" />
                             <Text text="{/detail/cdlName}" />
-                            <Label text="Quantita' totale" />
-                            <Text text="{/detail/QTY_TO_BUILD}" />
                             <Label text="Quantita' prodotta" />
                             <Text text="{/detail/QTY_DONE}" /> 
-                            <comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/> <!--{/detail/QTY_DONE_PERC} -->
+                            <!--<comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/> {/detail/QTY_DONE_PERC} -->
                             <Label text="Scarto macchina" />
                             <Text text="{/detail/QTY_REJECTED}" />
                             <Label text="Quantita' da produrre" />
-                            <Text text="{/detail/QTY_PRODUCE}" /> <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_PRODUCE_PERC} -->
+                            <Text text="{/detail/QTY_TO_BUILD}" />
+ <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_PRODUCE_PERC} -->
                             <Label text="Tempo ciclo [s]" />
                             <Text text="{/detail/TIME_CYCLE}" />
                             <Label text="Tempo ultimo ciclo [s]" />

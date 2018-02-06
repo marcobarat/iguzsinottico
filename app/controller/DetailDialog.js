@@ -151,7 +151,7 @@ sap.ui.define([
 
 
                     try {
-                        //obj.QTY_TO_BUILD = obj.QTY_TO_BUILD.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        obj.QTY_TO_BUILD = sap.ui.getCore().getModel().getData().machineselected.qtytobuild;
                         obj.QTY_DONE = obj[8].VAL;
                         obj.QTY_PRODUCE = 0;
                         obj.QTY_REJECTED = obj[9].VAL;

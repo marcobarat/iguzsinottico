@@ -39,8 +39,8 @@
                         <VBox height="auto"  class="rightBuilding">
    
                             <HBox width="100%">
-                                <comp:IlaPress imageUrl="{machines>/Engel450T/img}" imageSize="400px" marginLeft="0px" mnumber="{machines>/Engel450T/RESOURCE}" value="{machines>/Engel450T/value}" gaugeVisible="{machines>/Engel450T/gaugeVisible}" hasTool="{machines>/Engel450T/hasTool}" press="clickDetail"/>
-                                <comp:IlaPress imageUrl="{machines>/6138/img}" imageSize="400px" marginLeft="100px" mnumber="{machines>/6138/RESOURCE}" value="{machines>/6138/value}" gaugeVisible="{machines>/6138/gaugeVisible}" hasTool="{machines>/6138/hasTool}" press="clickDetail"/>
+                                <comp:IlaPress imageUrl="{machines>/Engel450T/img}" imageSize="400px" marginLeft="0px" mnumber="{machines>/Engel450T/RESOURCE}" qtyprd="{machines>/Engel450T/QTYTOBUILD}" value="{machines>/Engel450T/value}" gaugeVisible="{machines>/Engel450T/gaugeVisible}" hasTool="{machines>/Engel450T/hasTool}" press="clickDetail" qtyproduced="{machines>/Engel450T/PRODUCED}"/>
+                                <comp:IlaPress imageUrl="{machines>/6138/img}" imageSize="400px" marginLeft="100px" mnumber="{machines>/6138/RESOURCE}" qtyprd="{machines>/6138/QTYTOBUILD}" value="{machines>/6138/value}" gaugeVisible="{machines>/6138/gaugeVisible}" hasTool="{machines>/6138/hasTool}" press="clickDetail" qtyproduced="{machines>/6138/PRODUCED}"/>
                                 
                             </HBox>
                         </VBox>
