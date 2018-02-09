@@ -77,7 +77,7 @@ sap.ui.define([
                 transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
             } else {
-                transactionName = "XAC_GetSiliconatriceMachineStatus";
+                transactionName = "XAC_GetCurrentCommessaForSiliconatrice";
                 transactionCall = site + "/XACQuery" + "/siliconatrice/" + transactionName;
 
             }
@@ -161,9 +161,20 @@ sap.ui.define([
                     }
 
                 } else {
-                    this.shopOrder = obj[0].num_commessa;
-                    obj.cdlName = obj[0].num_commessa;
-
+                    this.shopOrder = obj[0].cd_commessa;
+                    obj.cdlName = obj[0].cd_commessa;
+                    obj.QTY_TO_BUILD = obj[0]._QtaLotto;
+                    obj.QTY_DONE = obj[0].qtaprodotta;
+                    obj.QTY_REJECTED = obj[0].qtascartata;
+                    obj.TIME_CYCLE = (obj[0]._TempoCicloProg) / 10;
+                    obj.TIME_TOTAL_STOP = ((obj[0].duratafermo) / 10) + " [s]";
+                    obj.TIME_TO_END = (obj[0].TempoCicloUltimo) / 10;
+                    obj.TIME_LAST_CYCLE = (obj[0].TempoCicloUltimo) / 10;
+                    if (obj[0]._QtaLotto == 0) {
+                        obj.QTY_PRODUCE_PERC = 0;
+                    } else {
+                        obj.QTY_PRODUCE_PERC = (obj[0].qtaprodotta / obj[0]._QtaLotto) * 100;
+                    }
                     try {
                         //obj.TIME_TO_END = this.secondsToHms(obj[16].VAL);
                         obj.TIME_TO_END = (obj[16].VAL);

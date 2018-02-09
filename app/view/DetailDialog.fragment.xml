@@ -5,7 +5,7 @@
     xmlns:comp="plantvim.component"
     xmlns:f="sap.ui.layout.form">
 
-    <Dialog id="detailDialog" title="Pressa: {/detail/resName}" class="myDialog" stretch="true"
+    <Dialog id="detailDialog" title="Machine: {/detail/resName}" class="myDialog" stretch="true"
             contentWidth="100%" resizable="false" contentHeight="100%">
         <content>
             <VBox width="100%">
@@ -29,27 +29,27 @@
                                     columnsM="2">
                         <f:content>
                             <core:Title text="Stato" />
-                            <Label text="Stato macchina" />
+                            <Label text="State machine" />
                             <Text text="{/detail/MES_STATUS}" />
-                            <Label text="Operazione macchina" />
+                            <Label text="MES Operation macchina" />
                             <Text text="{/mat/0/CURRENT_OPERATION}" />
-                            <Label text="Tempo totale di pausa" />
+                            <Label text="Total pause time" />
                             <Text text="{/detail/TIME_TOTAL_STOP}" />
 
-                            <core:Title text="Dettaglio ordine" />
-                            <Label text="Ordine di produzione" />
+                            <core:Title text="Order details" />
+                            <Label text="MES Production Order" />
                             <Text text="{/detail/cdlName}" />
-                            <Label text="Quantita' prodotta" />
+                            <Label text="Qty produced" />
                             <Text text="{/detail/QTY_DONE}" /> 
                             <!--<comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/> {/detail/QTY_DONE_PERC} -->
-                            <Label text="Scarto macchina" />
+                            <Label text="Qty rejected" />
                             <Text text="{/detail/QTY_REJECTED}" />
-                            <Label text="Quantita' da produrre" />
+                            <Label text="Qty to build" />
                             <Text text="{/detail/QTY_TO_BUILD}" />
- <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/><!-- {/detail/QTY_PRODUCE_PERC} -->
-                            <Label text="Tempo ciclo [s]" />
+ <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/>
+                            <Label text="Time cycle [s]" />
                             <Text text="{/detail/TIME_CYCLE}" />
-                            <Label text="Tempo ultimo ciclo [s]" />
+                            <Label text="Time last cycle [s]" />
                             <Text text="{/detail/TIME_TO_END}" />
                             
 
@@ -70,10 +70,10 @@
                                         columnsM="1">
                             <f:content>
 
-                                <core:Title text="Materiale" />
-                                <Label text="Codice materiale" />
+                                <core:Title text="Material" />
+                                <Label text="Material code" />
                                 <Text text="{/mat/0/Material}" />
-                                <Label text="Descrizione materiale" />
+                                <Label text="Material description" />
                                 <Text text="{/mat/0/Description}" />
                                 <!-- <Label text="Magazzino di destinazione" />
                                 <Text text="{/detail/STORE}" /> -->
@@ -98,10 +98,10 @@
                             </headerToolbar>
                             <columns>
                                 <Column>
-                                    <Text text="Codice stampo" />
+                                    <Text text="Mold number" />
                                 </Column>
                                 <Column>
-                                    <Text text="Descrizione stampo" />
+                                    <Text text="Mold description" />
                                 </Column>
                             </columns>
                             <items>
@@ -128,16 +128,16 @@
                         </headerToolbar>
                         <columns>
                             <Column>
-                                <Text text="Codice componente" />
+                                <Text text="BOM Component code" />
                             </Column>
                             <Column>
-                                <Text text="Descrizione componente" />
+                                <Text text="Component description" />
                             </Column>
                             <Column>
-                                <Text text="Quantita'" />
+                                <Text text="QTY'" />
                             </Column>
                             <Column>
-                                <Text text="UM" />
+                                <Text text="UoM" />
                             </Column>
                         </columns>
                         <items>

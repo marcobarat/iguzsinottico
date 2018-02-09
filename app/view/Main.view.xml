@@ -4,7 +4,8 @@
           controllerName="plantvim.controller.Main">
     <Page title="{locale>plantvim.view.title}"
           showHeader="false"
-          enableScrolling="false">
+          enableScrolling="false"
+          class="sfondosinottico">
         <content>
             <VBox height="100%">
                 <HBox width="100%">
@@ -31,8 +32,8 @@
                                         iconImg="images/ico1.png" iconSize="10rem" imgAreaSize="6rem"
                                         text="Injection Machines"/>
                         <!-- <comp:PodButton width="180px" press="plantSA1" imgAreaSize="6rem"
-                                        iconImg="images/ico2.png" iconSize="10rem"
-                                        text="Reparto &quot;SA1&quot;"/> -->
+                        iconImg="images/ico2.png" iconSize="10rem"
+                        text="Reparto &quot;SA1&quot;"/> -->
                     </HBox>
                     <HBox width="30%" height="100%">
 
