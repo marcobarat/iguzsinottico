@@ -277,26 +277,46 @@ sap.ui.define([
         },
 
         getDetailMAT: function (shopOrder) {
-
             var oModel = new JSONModel();
-            var transactionName = "XAC_GetCurrentShoporderMaterialFromEngel";
+            var transactionName;
             var that = this;
+            var transactionCall;
+
             var site = "iGuzzini";
-            var input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
-            var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
+            var input;
+            if (this.type === 'E') {
+                transactionName = "XAC_GetCurrentShoporderMaterialFromEngel";
+                input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
+                transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
-            jQuery.ajax({
-                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
-                method: "GET",
-                async: false,
-                success: function (oData) {
-                    that.getDetailMATSuccess(oData.Rowsets.Rowset[0].Row);
-                },
-                error: function (oData) {
-                    that.error(oData);
-                }
-            });
+                jQuery.ajax({
+                    url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                    method: "GET",
+                    async: false,
+                    success: function (oData) {
+                        that.getDetailMATSuccess(oData.Rowsets.Rowset[0].Row);
+                    },
+                    error: function (oData) {
+                        that.error(oData);
+                    }
+                });
+            } else {
+                transactionName = "XAC_GetInfoFromWSSiliconatrice";
+                input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
+                transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
+                jQuery.ajax({
+                    url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                    method: "GET",
+                    async: false,
+                    success: function (oData) {
+                        that.getDetailMATSuccess(oData.Rowsets.Rowset[0].Row);
+                    },
+                    error: function (oData) {
+                        that.error(oData);
+                    }
+                });
+            }
         },
         getDetailMATSuccess: function (data, response) {
             sap.ui.core.BusyIndicator.hide();
@@ -314,25 +334,26 @@ sap.ui.define([
         },
         //   getDetailFacility: function (resource) {
         getDetailFacility: function (shopOrder) {
+            if (this.type === 'E') {
+                var oModel = new JSONModel();
+                var transactionName = "XAC_GetCurrentStampoForEngel";
+                var that = this;
+                var site = "iGuzzini";
+                var input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
+                var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
 
-            var oModel = new JSONModel();
-            var transactionName = "XAC_GetCurrentStampoForEngel";
-            var that = this;
-            var site = "iGuzzini";
-            var input = "&workcenterid=" + this.workcenterid + "&plantid=1";// + this.workcenterid;
-            var transactionCall = site + "/XACQuery" + "/Engel/" + transactionName;
-
-            jQuery.ajax({
-                url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
-                method: "GET",
-                async: false,
-                success: function (oData) {
-                    that.getDetailFacilitySuccess(oData.Rowsets.Rowset[0].Row);
-                },
-                error: function (oData) {
-                    that.error(oData);
-                }
-            });
+                jQuery.ajax({
+                    url: "/XMII/Illuminator?QueryTemplate=" + transactionCall + input + "&Content-Type=text/json",
+                    method: "GET",
+                    async: false,
+                    success: function (oData) {
+                        that.getDetailFacilitySuccess(oData.Rowsets.Rowset[0].Row);
+                    },
+                    error: function (oData) {
+                        that.error(oData);
+                    }
+                });
+            }
 
         },
         getDetailFacilitySuccess: function (data, response) {
