@@ -3,6 +3,19 @@
 .sfondosinottico {
     background-color: #f0f0f0 !important;
 }
+.leftTile {
+    left: 8rem;
+}
+.sinotticoTitle {
+    font-size: 46pt;
+    margin-left: 14rem;
+    margin-top: 1rem;
+}
+.homeButton {
+    left: 23rem;
+    top: 0.5rem;
+    width: 4rem;
+}
 .tmpBorder
 {
     /*

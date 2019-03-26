@@ -108,6 +108,9 @@ sap.ui.define([
         },
         gantt: function() {
             this.getOwnerComponent().getRouter().navTo("gantt", true);
+        },
+        navToMain: function () {
+            window.location.href = "../main/index.html";
         }
 
     });

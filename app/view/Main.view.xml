@@ -9,17 +9,18 @@
         <content>
             <VBox height="100%">
                 <HBox width="100%">
-                    <HBox width="85%" alignItems="Center"
-                          justifyContent="Center">
-                        <Label text="Stato Produttivo Macchine" design="Bold" class="vimAreaLabel2"/>
-                    </HBox>
                     <HBox width="15%" alignItems="Center"
-                          justifyContent="End">
+                          justifyContent="Begin">
                         <Image
                             src="images/iguzlogo.png"
                             densityAware="false"
-                            width="12rem" class="mainViewLogo">
+                            width="14rem" class="mainViewLogo">
                         </Image>
+                    </HBox>
+                    <HBox width="85%" alignItems="Center"
+                          justifyContent="Center">
+                        <Label text="Stato Produttivo Macchine" design="Bold" class="sinotticoTitle"/>
+                        <Button icon="sap-icon://home" press="navToMain" class="homeButton"/>
                     </HBox>
                 </HBox>
                 <HBox width="100%" height="100%">
@@ -28,9 +29,9 @@
                     </HBox>
                     <HBox width="40%" height="100%" alignItems="Center"
                           justifyContent="SpaceBetween">
-                        <comp:PodButton width="180px" press="plantS"
-                                        iconImg="images/ico1.png" iconSize="10rem" imgAreaSize="6rem"
-                                        text="Injection Machines"/>
+                        <comp:PodButton width="450px" press="plantS"
+                                        iconImg="images/ico1.png" iconSize="24rem" imgAreaSize="6rem"
+                                        text="Injection Machines" class="leftTile"/>
                         <!-- <comp:PodButton width="180px" press="plantSA1" imgAreaSize="6rem"
                         iconImg="images/ico2.png" iconSize="10rem"
                         text="Reparto &quot;SA1&quot;"/> -->
