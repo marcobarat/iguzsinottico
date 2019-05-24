@@ -88,9 +88,9 @@
                     "target": "main"
                 },
                 {
-                    "name": "plantS",
-                    "pattern": "plantS",
-                    "target": "plantS"
+                    "name": "ListaMacchine",
+                    "pattern": "ListaMacchine",
+                    "target": "ListaMacchine"
                 },
                 {
                     "name": "plantSA1",
@@ -100,11 +100,11 @@
             "targets": {
                 "main": {
                     "viewName": "view.Main",
-                    "viewLevel": 0
+                    "viewLevel": 2
                 },
-                "plantS": {
-                    "viewName": "view.PlantS",
-                    "viewLevel": 1
+                "ListaMacchine": {
+                    "viewName": "view.ListaMacchine",
+                    "viewLevel": 0
                 },
                 "plantSA1": {
                     "viewName": "view.PlantSA1",

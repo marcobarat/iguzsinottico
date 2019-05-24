@@ -3,12 +3,27 @@
           xmlns:f="sap.ui.layout.form" xmlns:comp="plantvim.component"
           controllerName="plantvim.controller.Main">
     <Page title="{locale>plantvim.view.title}"
-          showHeader="false"
+          showHeader="true"
           enableScrolling="false"
           class="sfondosinottico">
-        <content>
+        
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://slim-arrow-left" press="navToMain"/>
+                    <Image src="images/iguzlogo.png" height="75%" class="moveLogoUp"/>
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="Stato Produttivo Macchine" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://log" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <!--<content>-->
             <VBox height="100%">
-                <HBox width="100%">
+<!--                <HBox width="100%">
                     <HBox width="15%" alignItems="Center"
                           justifyContent="Begin">
                         <Image
@@ -22,7 +37,7 @@
                         <Label text="Stato Produttivo Macchine" design="Bold" class="sinotticoTitle"/>
                         <Button icon="sap-icon://home" press="navToMain" class="homeButton"/>
                     </HBox>
-                </HBox>
+                </HBox>-->
                 <HBox width="100%" height="100%">
                     <HBox width="30%" height="100%">
 
@@ -41,6 +56,6 @@
                     </HBox>
                 </HBox>
             </VBox>
-        </content>
+        <!--</content>-->
     </Page>
 </mvc:View>

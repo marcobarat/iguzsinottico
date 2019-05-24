@@ -1,0 +1,40 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:c="sap.ui.commons" xmlns="sap.m"
+          xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+          xmlns:f="sap.ui.layout.form" xmlns:comp="plantvim.component"
+          controllerName="plantvim.controller.ListaMacchine">
+    <Page title="{locale>plantvim.view.title}"
+          showHeader="true"
+          enableScrolling="false"
+          class="plant sfondosinottico">
+        
+        <customHeader>
+            <Bar>
+                <contentLeft>
+                    <Button icon="sap-icon://slim-arrow-left" press="onNavBack"/>
+                    <Image src="images/iguzlogo.png" height="75%" class="moveLogoUp"/>
+                </contentLeft>
+                <contentMiddle>
+                    <Title text="Lista Macchine" />
+                </contentMiddle>
+                <contentRight>
+                    <Button icon="sap-icon://log" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+            
+        <TileContainer
+            id="container"
+            tileDelete="handleTileDelete"
+            tiles="{/}">
+            <comp:CustomStandardTile
+                icon="sap-icon://machine"
+                type="Monitor"
+                number="{workcenter}" 
+                title="{description}"
+                press="clickDetail"
+                status="{status}"
+                class="allarga"/>
+        </TileContainer>
+
+    </Page>
+</mvc:View>

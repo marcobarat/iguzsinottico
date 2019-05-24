@@ -101,7 +101,7 @@ sap.ui.define([
                     .substring(1);
         },
         plantS: function() {
-            this.getOwnerComponent().getRouter().navTo("plantS", true);
+            this.getOwnerComponent().getRouter().navTo("ListaMacchine", true);
         },
         plantSA1: function() {
             this.getOwnerComponent().getRouter().navTo("plantSA1", true);

@@ -1,5 +1,28 @@
 /* Custom Styles  */
-
+.errorStatus .sapMStdTileMonitorType {
+    background-color: rgba(255, 0, 0, 0.4);
+}
+.errorStatus {
+    border: solid 2px rgb(255, 0, 0);
+}
+.warningStatus .sapMStdTileMonitorType {
+    background-color: rgba(255, 255, 0, 0.4);
+}
+.warningStatus {
+    border: solid 2px rgb(255, 255, 0);
+}
+.okStatus .sapMStdTileMonitorType {
+    background-color: rgba(0, 180, 50, 0.4);
+}
+.okStatus {
+    border: solid 2px rgb(0, 180, 50);
+}
+.sapMPageHeader::before {
+    border: none !important;
+}
+.moveLogoUp {
+    margin-bottom: 0.5rem;
+}
 .sfondosinottico {
     background-color: #f0f0f0 !important;
 }

@@ -46,7 +46,7 @@
                             <Text text="{/detail/QTY_REJECTED}" />
                             <Label text="Qty to build" />
                             <Text text="{/detail/QTY_TO_BUILD}" />
- <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/>
+                            <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/>
                             <Label text="Time cycle [s]" />
                             <Text text="{/detail/TIME_CYCLE}" />
                             <Label text="Time last cycle [s]" />
