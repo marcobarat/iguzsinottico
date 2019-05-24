@@ -1,5 +1,6 @@
 <core:FragmentDefinition
     xmlns="sap.m"
+    xmlns:t="sap.ui.table"
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:comp="plantvim.component"
@@ -8,155 +9,200 @@
     <Dialog id="detailDialog" title="Machine: {/detail/resName}" class="myDialog" stretch="true"
             contentWidth="100%" resizable="false" contentHeight="100%">
         <content>
-            <VBox width="100%">
-                <HBox alignItems="Start"
-                      justifyContent="Center">
-                    <Image
-                        src="{/detail/img}"
-                        densityAware="false"
-                        width="200px" >
-                    </Image>
-                </HBox>
-                <HBox width="100%">
-                    <f:SimpleForm   id="detailForm"
-                                    maxContainerCols="2"
-                                    editable="false"
-                                    labelSpanL="2"
-                                    labelSpanM="2"
-                                    emptySpanL="0"
-                                    emptySpanM="0"
-                                    columnsL="2"
-                                    columnsM="2">
-                        <f:content>
-                            <core:Title text="Stato" />
-                            <Label text="State machine" />
-                            <Text text="{/detail/MES_STATUS}" />
-                            <Label text="MES Operation macchina" />
-                            <Text text="{/mat/0/CURRENT_OPERATION}" />
-                            <Label text="Total pause time" />
-                            <Text text="{/detail/TIME_TOTAL_STOP}" />
+            <TabContainer id="OverviewContainer" itemSelect="ParameterTabSelection">
+                <items>    
+                    <TabContainerItem name="Dettaglio Macchina" id="dettaglio">
+                        <content>
+                            <VBox width="100%">
+                                <HBox alignItems="Start"
+                                      justifyContent="Center">
+                                    <Image
+                                        src="{/detail/img}"
+                                        densityAware="false"
+                                        width="200px" >
+                                    </Image>
+                                </HBox>
+                                <HBox width="100%">
+                                    <f:SimpleForm   id="detailForm"
+                                                    maxContainerCols="2"
+                                                    editable="false"
+                                                    labelSpanL="2"
+                                                    labelSpanM="2"
+                                                    emptySpanL="0"
+                                                    emptySpanM="0"
+                                                    columnsL="2"
+                                                    columnsM="2">
+                                        <f:content>
+                                            <core:Title text="Stato" />
+                                            <Label text="State machine" />
+                                            <Text text="{/detail/MES_STATUS}" />
+                                            <Label text="MES Operation macchina" />
+                                            <Text text="{/mat/0/CURRENT_OPERATION}" />
+                                            <Label text="Total pause time" />
+                                            <Text text="{/detail/TIME_TOTAL_STOP}" />
 
-                            <core:Title text="Order details" />
-                            <Label text="MES Production Order" />
-                            <Text text="{/detail/cdlName}" />
-                            <Label text="Qty produced" />
-                            <Text text="{/detail/QTY_DONE}" /> 
-                            <!--<comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/> {/detail/QTY_DONE_PERC} -->
-                            <Label text="Qty rejected" />
-                            <Text text="{/detail/QTY_REJECTED}" />
-                            <Label text="Qty to build" />
-                            <Text text="{/detail/QTY_TO_BUILD}" />
-                            <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/>
-                            <Label text="Time cycle [s]" />
-                            <Text text="{/detail/TIME_CYCLE}" />
-                            <Label text="Time last cycle [s]" />
-                            <Text text="{/detail/TIME_TO_END}" />
+                                            <core:Title text="Order details" />
+                                            <Label text="MES Production Order" />
+                                            <Text text="{/detail/cdlName}" />
+                                            <Label text="Qty produced" />
+                                            <Text text="{/detail/QTY_DONE}" /> 
+                                            <!--<comp:ProgressBar value="{/detail/QTY_DONE_PERC}" height="15px" width="90px"/> {/detail/QTY_DONE_PERC} -->
+                                            <Label text="Qty rejected" />
+                                            <Text text="{/detail/QTY_REJECTED}" />
+                                            <Label text="Qty to build" />
+                                            <Text text="{/detail/QTY_TO_BUILD}" />
+                                            <comp:ProgressBar value="{/detail/QTY_PRODUCE_PERC}" height="15px" width="90px"/>
+                                            <Label text="Time cycle [s]" />
+                                            <Text text="{/detail/TIME_CYCLE}" />
+                                            <Label text="Time last cycle [s]" />
+                                            <Text text="{/detail/TIME_TO_END}" />
                             
 
-                        </f:content>
-                    </f:SimpleForm>
-                </HBox>
-                <HBox width="100%">
-                    <HBox  width="50%" class="det2">
-                        <f:SimpleForm   id="detailForm2"
-                                        layout="ResponsiveGridLayout"
-                                        maxContainerCols="1"
-                                        editable="false"
-                                        labelSpanL="2"
-                                        labelSpanM="2"
-                                        emptySpanL="0"
-                                        emptySpanM="0"
-                                        columnsL="1"
-                                        columnsM="1">
-                            <f:content>
+                                        </f:content>
+                                    </f:SimpleForm>
+                                </HBox>
+                                <HBox width="100%">
+                                    <HBox  width="50%" class="det2">
+                                        <f:SimpleForm   id="detailForm2"
+                                                        layout="ResponsiveGridLayout"
+                                                        maxContainerCols="1"
+                                                        editable="false"
+                                                        labelSpanL="2"
+                                                        labelSpanM="2"
+                                                        emptySpanL="0"
+                                                        emptySpanM="0"
+                                                        columnsL="1"
+                                                        columnsM="1">
+                                            <f:content>
 
-                                <core:Title text="Material" />
-                                <Label text="Material code" />
-                                <Text text="{/mat/0/Material}" />
-                                <Label text="Material description" />
-                                <Text text="{/mat/0/Description}" />
-                                <!-- <Label text="Magazzino di destinazione" />
-                                <Text text="{/detail/STORE}" /> -->
+                                                <core:Title text="Material" />
+                                                <Label text="Material code" />
+                                                <Text text="{/mat/0/Material}" />
+                                                <Label text="Material description" />
+                                                <Text text="{/mat/0/Description}" />
+                                                <!-- <Label text="Magazzino di destinazione" />
+                                                <Text text="{/detail/STORE}" /> -->
 
-                                <!--
-                                <core:Title text="Attrezzatura" />
-                                <Label text="Codice stampo" />
-                                <Text text="efwefdzfsfsdf" />
-                                <Label text="Descrizione stampo" />
-                                <Text text="wefwerf34t45646" />-->
-                            </f:content>
-                        </f:SimpleForm>
-                    </HBox>
-                    <HBox  width="50%">
-                        <Table
-                            inset="false"
-                            items="{/facilities}">
-                            <headerToolbar>
-                                <Toolbar>
-                                    <Title text="Attrezzature" level="H2"/>
-                                </Toolbar>
-                            </headerToolbar>
-                            <columns>
-                                <Column>
-                                    <Text text="Mold number" />
-                                </Column>
-                                <Column>
-                                    <Text text="Mold description" />
-                                </Column>
-                            </columns>
-                            <items>
-                                <ColumnListItem>
-                                    <cells>
-                                        <Text
-                                            text="{Resource}" />
-                                        <Text
-                                            text="{Description}" />
-                                    </cells>
-                                </ColumnListItem>
-                            </items>
-                        </Table>
-                    </HBox>
-                </HBox>
-                <HBox>
-                    <Table
-                        inset="false"
-                        items="{/bom}">
-                        <headerToolbar>
-                            <Toolbar>
-                                <Title text="BOM" level="H2"/>
-                            </Toolbar>
-                        </headerToolbar>
-                        <columns>
-                            <Column>
-                                <Text text="BOM Component code" />
-                            </Column>
-                            <Column>
-                                <Text text="Component description" />
-                            </Column>
-                            <Column>
-                                <Text text="QTY'" />
-                            </Column>
-                            <Column>
-                                <Text text="UoM" />
-                            </Column>
-                        </columns>
-                        <items>
-                            <ColumnListItem>
-                                <cells>
-                                    <Text
-                                        text="{Material}" />
-                                    <Text
-                                        text="{Description}" />
-                                    <Text
-                                        text="{Qty}" />
-                                    <Text
-                                        text="{UnitOfMeasure}" />
-                                </cells>
-                            </ColumnListItem>
-                        </items>
-                    </Table>
-                </HBox>
-            </VBox>
+                                                <!--
+                                                <core:Title text="Attrezzatura" />
+                                                <Label text="Codice stampo" />
+                                                <Text text="efwefdzfsfsdf" />
+                                                <Label text="Descrizione stampo" />
+                                                <Text text="wefwerf34t45646" />-->
+                                            </f:content>
+                                        </f:SimpleForm>
+                                    </HBox>
+                                    <HBox  width="50%">
+                                        <Table
+                                            inset="false"
+                                            items="{/facilities}">
+                                            <headerToolbar>
+                                                <Toolbar>
+                                                    <Title text="Attrezzature" level="H2"/>
+                                                </Toolbar>
+                                            </headerToolbar>
+                                            <columns>
+                                                <Column>
+                                                    <Text text="Mold number" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Mold description" />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text
+                                                            text="{Resource}" />
+                                                        <Text
+                                                            text="{Description}" />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </HBox>
+                                </HBox>
+                                <HBox>
+                                    <Table
+                                        inset="false"
+                                        items="{/bom}">
+                                        <headerToolbar>
+                                            <Toolbar>
+                                                <Title text="BOM" level="H2"/>
+                                            </Toolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column>
+                                                <Text text="BOM Component code" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Component description" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="QTY'" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="UoM" />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text
+                                                        text="{Material}" />
+                                                    <Text
+                                                        text="{Description}" />
+                                                    <Text
+                                                        text="{Qty}" />
+                                                    <Text
+                                                        text="{UnitOfMeasure}" />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </TabContainerItem>
+                    <TabContainerItem name="Parametri" id="parametri">
+                        <content>
+                            <t:Table
+                                width="100%"
+                                rowHeight="40px"
+                                enableColumnReordering="false"
+                                id="sistemaTable"
+                                visibleRowCount="8"
+                                class="alternate-color"
+                                selectionMode="None"
+                                rows="{/}">
+                                <t:columns>
+                                    <t:Column hAlign="Center" width="34%" resizable="false">
+                                        <Label text="Nome Parametro"/>
+                                        <t:template>
+                                            <Text text="dddd"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="33%" resizable="false">
+                                        <Label text="Valore"/>
+                                        <t:template class="textCT">
+                                            <Text text="yo" maxLines="2"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="33%" resizable="false">
+                                        <Label text="Data"/>
+                                        <t:template class="textCT">
+                                            <Text text="ciao" maxLines="2"/>
+                                        </t:template>
+                                    </t:Column>
+                                </t:columns>
+                                <t:noData>
+                                    <Text class="sapUiTableCtrlEmptyMsg" text="Nessun dato." textAlign="Center"/>
+                                </t:noData>
+                            </t:Table>
+                        </content>
+                    </TabContainerItem>
+                </items>
+            </TabContainer>
         </content>
         <endButton>
             <Button icon="sap-icon://accept" press="onClose" class="customButtonGreen"/>

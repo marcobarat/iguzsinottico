@@ -3,8 +3,9 @@ sap.ui.define([
     'sap/m/MessageToast',
     'sap/m/MessageBox',
     'sap/ui/model/json/JSONModel',
-    'plantvim/controller/GenericDialog'
-], function (jQuery, MessageToast, MessageBox, JSONModel, GenericDialog) {
+    'plantvim/controller/GenericDialog',
+    'plantvim/controller/Library'
+], function (jQuery, MessageToast, MessageBox, JSONModel, GenericDialog, Library) {
     "use strict";
 
     var DetailDialog = GenericDialog.extend("plantvim.controller.DetailDialog", {
@@ -41,6 +42,7 @@ sap.ui.define([
             this._initDialog("plantvim.view.DetailDialog", oView, this.model);
 
             this.openDialog();
+            Library.RemoveClosingButtons(oView.byId("OverviewContainer"));
 
             var width = jQuery(".myDialog").width() - 20;
 
